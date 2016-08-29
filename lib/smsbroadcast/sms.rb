@@ -23,7 +23,7 @@ module Smsbroadcast
 
       to = @to.respond_to?(:each) ? @to.join(",") : @to
 
-      resp = @conn.post("/apiadv.php") do |req|
+      resp = @conn.post("/api-adv.php") do |req|
         req.body = {to:       to,
                     message:  @message,
                     ref:      @ref,

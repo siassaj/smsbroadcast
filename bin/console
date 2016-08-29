@@ -2,13 +2,18 @@
 
 require "bundler/setup"
 require "smsbroadcast"
+require 'optparse'
+require 'pry'
 
-# You can add fixtures and/or initialization code here to make experimenting
-# with your gem easier. You can also use a different console, if you like.
+opt_parser = OptionParser.new do |opts|
+  opts.banner = "Usage: bin/console username password"
+end
 
-# (If you use this, don't forget to add pry to your Gemfile!)
-# require "pry"
-# Pry.start
+opts = opt_parser.parse!(ARGV)
 
-require "irb"
-IRB.start
+Smsbroadcast.configure do |config|
+  config.username = opts[0]
+  config.password = opts[1]
+end
+
+Pry.start
