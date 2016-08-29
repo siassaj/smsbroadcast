@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["sia.s.saj"]
   spec.email         = ["sia.s.saj@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Library to consume smsbroadcast.com.au service.}
+  spec.description   = %q{Send & receive sms, and monitor your account with smsbroadcast.com.au.}
+  spec.homepage      = %q{https://github.com/siassaj/smsbroadcast.git}
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -26,6 +26,9 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+
+
+  spec.add_dependency "faraday", "~> 0.9.2"
 
   spec.add_development_dependency "bundler", "~> 1.12"
   spec.add_development_dependency "rake", "~> 10.0"
