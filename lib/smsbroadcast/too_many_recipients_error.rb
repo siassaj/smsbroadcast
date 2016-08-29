@@ -1,2 +1,4 @@
-class Smsbroadcast::TooManyRecipientsError < StandardError
+module Smsbroadcast
+  class TooManyRecipientsError < StandardError
+  end
 end
