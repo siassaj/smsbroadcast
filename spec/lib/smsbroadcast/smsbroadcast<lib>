@@ -1,7 +1,0 @@
-  /home/sia/Code/smsbroadcast/spec/lib/smsbroadcast:
-  total used in directory 44 available 69544652
-  drwxrwxr-x 2 sia sia 4096 Aug 29 19:12 .
-  drwxrwxr-x 3 sia sia 4096 Aug 29 18:02 ..
-  -rw-rw-r-- 1 sia sia  912 Aug 29 18:02 sms_response_spec.rb
-  -rw-rw-r-- 1 sia sia 2636 Aug 29 18:59 sms_spec.rb
-  -rw-rw-r-- 1 sia sia  842 Aug 29 19:12 status_spec.rb
