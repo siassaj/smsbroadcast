@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
-require "smsbroadcast"
-require 'optparse'
 require 'pry'
+require 'optparse'
+require "smsbroadcast"
+require "bundler/setup"
+
 
 opt_parser = OptionParser.new do |opts|
   opts.banner = "Usage: bin/console username password"
