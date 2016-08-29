@@ -1,12 +1,13 @@
 require 'smsbroadcast/too_many_recipients_error'
 require 'smsbroadcast/sms_response'
+require 'smsbroadcast/connection'
 
 module Smsbroadcast
   class Sms < Connection
 
-    attr_reader :to, :message, :ref, :from, :maxsplit, :delay
+    attr_accessor :to, :message, :ref, :from, :maxsplit, :delay
 
-    def initialize(to:, message:, ref:, from: nil, maxsplit: nil, delay: nil)
+    def initialize(to: nil, message: nil, ref: nil, from: nil, maxsplit: nil, delay: nil)
       super()
       @to       =       to
       @message  =  message

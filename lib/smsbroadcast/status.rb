@@ -1,3 +1,5 @@
+require 'smsbroadcast/connection'
+
 class Smsbroadcast::Status < Smsbroadcast::Connection
 
   attr_reader :status, :balance, :message
