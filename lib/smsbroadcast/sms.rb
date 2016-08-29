@@ -1,3 +1,6 @@
+require 'smsbroadcast/too_many_recipients_error'
+require 'smsbroadcast/sms_response'
+
 module Smsbroadcast
   class Sms < Connection
 
@@ -20,16 +23,18 @@ module Smsbroadcast
 
       to = @to.respond_to?(:each) ? @to.join(",") : @to
 
-      @conn.post("/apiadv.php") do |req|
-        req.body = {to: to,
-                    message: @message,
-                    ref: @ref,
-                    from: @from,
+      resp = @conn.post("/apiadv.php") do |req|
+        req.body = {to:       to,
+                    message:  @message,
+                    ref:      @ref,
+                    from:     @from,
                     maxsplit: @maxsplit,
-                    delay: @delay,
+                    delay:    @delay,
                     username: Smsbroadcast.configuration.username,
-                    password:Smsbroadcast.configuration.password}
+                    password: Smsbroadcast.configuration.password}
       end
+
+      SmsResponse.new resp.body
     end
   end
 end

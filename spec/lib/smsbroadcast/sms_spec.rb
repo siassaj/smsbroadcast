@@ -42,6 +42,10 @@ describe Smsbroadcast::Sms do
      password: password
     }
   end
+  let(:stub) {
+    stub_request(:post, "https://api.smsbroadcast.com.au/apiadv.php")
+    .with(:body => request_body)
+  }
 
   subject(:subject) {
     described_class.new(to: recipient,
@@ -58,8 +62,7 @@ describe Smsbroadcast::Sms do
 
   describe "#deliver" do
     it "makes a https request to smsbroadcast" do
-      stub = stub_request(:post, "https://api.smsbroadcast.com.au/apiadv.php")
-      .with(body: request_body)
+      stub
       .to_return(body: "a response to post")
 
       subject.deliver
@@ -73,7 +76,7 @@ describe Smsbroadcast::Sms do
                                     ref: ref)
       request_body[:to] = recipients.join(",")
 
-      stub = stub_request(:post, "https://api.smsbroadcast.com.au/apiadv.php")
+      stub
       .with(body: request_body)
       .to_return(body: "a response to post")
 
@@ -89,6 +92,15 @@ describe Smsbroadcast::Sms do
                                     ref: ref)
 
       expect{subject.deliver}.to raise_error Smsbroadcast::TooManyRecipientsError
+    end
+
+    it "returns an SmsResponse object" do
+      stub
+      .to_return(:status => 200, :body => "OK:61411111111:123")
+
+      resp = subject.deliver
+
+      expect(resp).to be_a_kind_of Smsbroadcast::SmsResponse
     end
   end
 end
